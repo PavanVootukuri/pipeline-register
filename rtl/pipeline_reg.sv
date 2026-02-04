@@ -34,4 +34,25 @@ module pipeline_reg #(
         end
     end
 
+
+// Assertions for verification 
+
+`ifdef ASSERTIONS
+  assert property (@(posedge clk)
+    disable iff (!rst_n)
+    out_valid && !out_ready |=> out_valid
+  );
+
+  assert property (@(posedge clk)
+    disable iff (!rst_n)
+    out_valid && out_ready |-> in_ready
+  );
+
+`endif
 endmodule
+
+
+
+
+
+
