@@ -15,6 +15,14 @@ The module sits between an input and output interface and provides:
 2.Data is transferred when `out_valid && out_ready`
 3.Allows simultaneous consume and refill in the same cycle
 
+## Verification Notes
+- SystemVerilog assertions are included to validate correct valid–ready behavior
+- Assertions ensure:
+  - `out_valid` remains asserted until data is accepted
+  - Data transfer occurs only when both valid and ready are asserted
+- Assertions are guarded using `ifdef ASSERTIONS` so they are active only during
+  simulation and do not affect synthesis
+
 ## File Structure
 rtl/pipeline_reg.sv
 
